@@ -1,0 +1,55 @@
+{
+  "project_info": {
+    "project_number": "645998110883",
+    "firebase_url": "https://messageboard-f4f31.firebaseio.com",
+    "project_id": "messageboard-f4f31",
+    "storage_bucket": "messageboard-f4f31.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:645998110883:android:414eeda8c3ddd01f",
+        "android_client_info": {
+          "package_name": "com.epicodus.messageboard"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "645998110883-16bij1393cbmatr41q29aljqjgvj7i63.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.epicodus.messageboard",
+            "certificate_hash": "41187FCE85478183CE1532676DF2CBF520AAF751"
+          }
+        },
+        {
+          "client_id": "645998110883-ttcibo3of3sta8og4fnss4aukgaics14.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDjAlJGYn9z8AsAw23jEJx87hhoRqGe5ys"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "645998110883-ttcibo3of3sta8og4fnss4aukgaics14.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
