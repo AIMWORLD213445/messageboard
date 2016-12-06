@@ -23,22 +23,23 @@
         android:layout_height="wrap_content"
         android:text="submit"
         android:id="@+id/messageButton"
-        android:layout_below="@+id/editText"
         android:layout_centerHorizontal="true" />
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textAppearance="?android:attr/textAppearanceLarge"
-        android:text="Messages"
+        android:text="Categories"
         android:id="@+id/textView"
-        android:layout_centerVertical="true"
-        android:layout_centerHorizontal="true" />
+        android:layout_below="@+id/messageEditText"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="80dp" />
 
-    <ListView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/listView"
+
+    <android.support.v7.widget.RecyclerView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
         android:layout_below="@+id/textView"
-        android:layout_centerHorizontal="true" />
+        android:id="@+id/recyclerView"/>
+
 </RelativeLayout>
