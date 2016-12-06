@@ -17,6 +17,7 @@ public class Category {
     public Category(String name, List messages) {
         this.name = name;
         this.mMessages = messages;
+
     }
 
     public Category() {

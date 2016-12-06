@@ -1,10 +1,18 @@
 package com.epicodus.messageboard;
 
+import android.content.Intent;
+import android.content.SharedPreferences;
+import android.preference.PreferenceManager;
+import android.support.v4.view.MenuItemCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.support.v7.widget.SearchView;
 import android.util.Log;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
@@ -21,6 +29,8 @@ import com.google.firebase.database.ValueEventListener;
 import java.util.ArrayList;
 import java.util.List;
 
+import com.epicodus.messageboard.Category;
+
 import butterknife.Bind;
 import butterknife.ButterKnife;
 
@@ -28,6 +38,10 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     private ValueEventListener mMessageReferenceListener;
     private DatabaseReference mMessageReference;
     private FirebaseRecyclerAdapter mFirebaseAdapter;
+    private SharedPreferences mSharedPreferences;
+    private SharedPreferences.Editor mEditor;
+    private String mRecentCategory;
+
 
     private ArrayList<String> messages = new ArrayList<>();
 
@@ -52,6 +66,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             for (DataSnapshot messageSnapshot: dataSnapshot.getChildren()) {
                    String message = messageSnapshot.getValue().toString();
                     Log.d("messages updated", "message: " + message);
+
                     messages.add(message);
 
                }
@@ -67,6 +82,13 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         setContentView(R.layout.activity_main);
         ButterKnife.bind(this);
 
+        mSharedPreferences = PreferenceManager.getDefaultSharedPreferences(this);
+        mRecentCategory = mSharedPreferences.getString(Constants.PREFERENCES_KEY_CATEGORY, null);
+
+
+
+        mEditor = mSharedPreferences.edit();
+
         mMessageButton.setOnClickListener(this);
 
         mMessageReference = FirebaseDatabase.getInstance().getReference(Constants.FIREBASE_CHILD_MESSAGE);
@@ -74,10 +96,51 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     }
 
     @Override
+    public boolean onCreateOptionsMenu(Menu menu){
+        MenuInflater inflater = getMenuInflater();
+        inflater.inflate(R.menu.menu_search, menu);
+        ButterKnife.bind(this);
+
+        mSharedPreferences = PreferenceManager.getDefaultSharedPreferences(this);
+        mEditor = mSharedPreferences.edit();
+
+        MenuItem menuItem = menu.findItem(R.id.action_search);
+        SearchView searchView = (SearchView) MenuItemCompat.getActionView(menuItem);
+
+        searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
+
+            @Override
+                public boolean onQueryTextSubmit(String query) {
+                addToSharedPreferences(query);
+
+                for(int i = 0; i < messages.size() ; i++) {
+
+                    Log.d("Query" , query);
+                    Log.d("message" , messages.get(i).substring(6, messages.get(i).length() - 1 )) ;
+
+                    if(query.equals(messages.get(i).substring(6, messages.get(i).length()-1 ) ))
+                    {
+                        Log.d("Enter", query);
+                        getCategories(query);
+                    }
+                }
+
+                return false;
+            }
+
+            @Override
+                    public boolean onQueryTextChange(String newText){
+                return false;
+            }
+        });
+
+        return true;
+    }
+
+    @Override
     public void onClick(View v){
         if(v == mMessageButton){
             String message = mMessageEditText.getText().toString();
-            List<String> messages = new ArrayList<>();
 
             Category category = new Category(message, messages );
             Log.d("Test name" , category.getName());
@@ -109,6 +172,16 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     protected void onDestroy() {
         super.onDestroy();
         mFirebaseAdapter.cleanup();
+    }
+
+    private void addToSharedPreferences(String category){
+        mEditor.putString(Constants.PREFERENCES_KEY_CATEGORY, category).apply();
+    }
+
+    private void getCategories(String query){
+        Intent intent = new Intent(MainActivity.this, CategoryActivity.class);
+
+        startActivity(intent);
     }
 
 }

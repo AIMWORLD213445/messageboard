@@ -15,16 +15,31 @@
         android:textAppearance="?android:attr/textAppearanceLarge"
         android:text="Messages"
         android:id="@+id/nameTextView"
-        android:layout_alignParentTop="true"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="35dp" />
+        android:layout_centerVertical="true"
+        android:layout_centerHorizontal="true" />
 
-    <ListView
+    <EditText
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:id="@+id/messageListView"
-        android:layout_below="@+id/nameTextView"
-        android:layout_alignLeft="@+id/nameTextView"
-        android:layout_alignStart="@+id/nameTextView"
-        android:layout_marginTop="59dp" />
+        android:hint="message here"
+        android:id="@+id/editText"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="49dp" />
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Submit"
+        android:id="@+id/button"
+        android:layout_below="@+id/editText"
+        android:layout_centerHorizontal="true" />
+
+
+    <!--<android.support.v7.widget.RecyclerView-->
+        <!--android:layout_width="match_parent"-->
+        <!--android:layout_height="match_parent"-->
+        <!--android:layout_below="@+id/nameTextView"-->
+        <!--/>-->
+
 </RelativeLayout>
