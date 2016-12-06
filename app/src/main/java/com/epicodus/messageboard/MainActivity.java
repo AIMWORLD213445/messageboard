@@ -31,6 +31,8 @@ import java.util.List;
 
 import com.epicodus.messageboard.Category;
 
+import org.parceler.Parcels;
+
 import butterknife.Bind;
 import butterknife.ButterKnife;
 
@@ -42,8 +44,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     private SharedPreferences.Editor mEditor;
     private String mRecentCategory;
 
-
     private ArrayList<String> messages = new ArrayList<>();
+
 
     @Bind(R.id.recyclerView) RecyclerView mRecyclerView;
 
@@ -68,7 +70,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                     Log.d("messages updated", "message: " + message);
 
                     messages.add(message);
-
                }
            }
 
@@ -84,8 +85,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
         mSharedPreferences = PreferenceManager.getDefaultSharedPreferences(this);
         mRecentCategory = mSharedPreferences.getString(Constants.PREFERENCES_KEY_CATEGORY, null);
-
-
 
         mEditor = mSharedPreferences.edit();
 
@@ -121,7 +120,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                     if(query.equals(messages.get(i).substring(6, messages.get(i).length()-1 ) ))
                     {
                         Log.d("Enter", query);
-                        getCategories(query);
+                        getCategories(query , i);
                     }
                 }
 
@@ -142,7 +141,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         if(v == mMessageButton){
             String message = mMessageEditText.getText().toString();
 
-            Category category = new Category(message, messages );
+            Category category = new Category(message );
             Log.d("Test name" , category.getName());
 
             saveMessageToFirebase(category);
@@ -178,10 +177,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         mEditor.putString(Constants.PREFERENCES_KEY_CATEGORY, category).apply();
     }
 
-    private void getCategories(String query){
-        Intent intent = new Intent(MainActivity.this, CategoryActivity.class);
+    private void getCategories(String query , int i ){
 
-        startActivity(intent);
     }
 
 }

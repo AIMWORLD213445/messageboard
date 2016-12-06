@@ -22,7 +22,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:hint="message here"
-        android:id="@+id/editText"
+        android:id="@+id/messageEditText"
         android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="49dp" />
@@ -31,15 +31,15 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Submit"
-        android:id="@+id/button"
-        android:layout_below="@+id/editText"
+        android:id="@+id/messageButton"
+        android:layout_below="@+id/messageEditText"
         android:layout_centerHorizontal="true" />
 
-
-    <!--<android.support.v7.widget.RecyclerView-->
-        <!--android:layout_width="match_parent"-->
-        <!--android:layout_height="match_parent"-->
-        <!--android:layout_below="@+id/nameTextView"-->
-        <!--/>-->
+    <android.support.v7.widget.RecyclerView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:id="@+id/recyclerView"
+        android:layout_below="@+id/nameTextView"
+        />
 
 </RelativeLayout>

@@ -58,9 +58,8 @@ public class FirebaseCategoryViewHolder extends RecyclerView.ViewHolder implemen
                 int itemPosition = getLayoutPosition();
 
                 Intent intent = new Intent(mContext, CategoryActivity.class);
-                intent.putExtra("position", itemPosition + "");
+                intent.putExtra("position", itemPosition);
                 intent.putExtra("categories", Parcels.wrap(categories) );
-                intent.putExtra("name", Parcels.wrap(categories) );
 
                 mContext.startActivity(intent);
             }

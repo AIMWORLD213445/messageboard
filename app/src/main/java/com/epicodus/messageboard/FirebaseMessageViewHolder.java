@@ -17,8 +17,6 @@ import org.parceler.Parcels;
 
 import java.util.ArrayList;
 
-
-
 /**
  * Created by Guest on 12/5/16.
  */
@@ -37,10 +35,10 @@ public class FirebaseMessageViewHolder extends RecyclerView.ViewHolder implement
         itemView.setOnClickListener(this);
     }
 
-    public void bindCategory(Category category) {
+    public void bindMessage(Message message) {
         TextView nameTextView = (TextView) mView.findViewById(R.id.categoryName);
 
-        nameTextView.setText(category.getName());
+        nameTextView.setText(message.getName());
 
     }
 
