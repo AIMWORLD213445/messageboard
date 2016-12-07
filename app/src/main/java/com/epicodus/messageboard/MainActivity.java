@@ -140,8 +140,10 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     public void onClick(View v){
         if(v == mMessageButton){
             String message = mMessageEditText.getText().toString();
+            List<MessageText> messages = new ArrayList<>();
 
-            Category category = new Category(message );
+            Category category = new Category(message , messages );
+
             Log.d("Test name" , category.getName());
 
             saveMessageToFirebase(category);

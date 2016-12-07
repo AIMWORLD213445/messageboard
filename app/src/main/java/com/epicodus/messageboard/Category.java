@@ -12,10 +12,11 @@ import java.util.List;
 @Parcel
 public class Category {
     private String name;
+    private List<MessageText> messages = new ArrayList<MessageText>();
 
-    public Category(String name) {
+    public Category(String name, List<MessageText> messages) {
         this.name = name;
-
+        this.messages = messages;
     }
 
     public Category() {
@@ -25,6 +26,14 @@ public class Category {
     public String getName() {
         return name;
 
+    }
+
+    public List<MessageText> getMessages() {
+        return messages;
+    }
+
+    public void addMessage(MessageText message){
+        messages.add(message);
     }
 
 }

@@ -10,23 +10,27 @@ import java.util.List;
  */
 
 @Parcel
-public class Message {
+public class MessageText {
     private String name;
     private String category;
 
-    public Message(String name , String category) {
+    public MessageText(String name , String category) {
         this.name = name;
         this.category = category;
     }
 
-    public Message() {
+    public MessageText() {
 
     }
 
     public String getName() {
         return name;
-
     }
+
+    public String getCategory() {
+        return category;
+    }
+
 
 }
 
